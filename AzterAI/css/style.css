@@ -1,0 +1,1016 @@
+/* Variáveis CSS para o tema (Mais minimalista e focado no preto) */
+:root {
+
+    --primary-color: #ffffff; /* Branco para alto contraste */
+    --secondary-color: #000000; /* Preto absoluto */
+    --accent-color: #00e0ff; /* Ciano para detalhes sutis */
+    --text-color-light: #ffffff;
+    --text-color-dark: #b5b5b5;
+    --card-bg: rgba(255, 255, 255, 0.05); /* Fundo sutil para cards */
+    --border-glow: rgba(0, 224, 255, 0.2);
+    --hover-glow: rgba(0, 224, 255, 0.5);
+    --font-body: 'Montserrat', sans-serif;
+}
+
+/* Reset e Configurações Globais */
+/* Impede seleção de texto em TODO o site */
+body {
+    user-select: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-color-light);
+    background-color: var(--secondary-color); /* Fundo preto sólido */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Tipografia e Títulos */
+.section-padding {
+    padding: 100px 0;
+    position: relative;
+}
+
+h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    color: var(--text-color-light);
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-color-light);
+}
+
+p {
+    color: var(--text-color-dark);
+}
+
+a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Botões --- */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 35px;
+    border: 2px solid var(--text-color-light);
+    background-color: transparent;
+    color: var(--text-color-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.btn-primary:hover {
+    background-color: var(--text-color-light);
+    color: var(--secondary-color);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary i {
+    margin-left: 10px;
+}
+
+/* --- Navbar (Nav Bar) --- */
+.navbar {
+    background-color: transparent;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 80px;                 /* 🔴 ALTURA DEFINIDA */
+    display: flex;
+    align-items: center;          /* 🔴 CENTRALIZA VERTICAL */
+    transition: background-color 0.4s ease;
+}
+
+/* Fundo no scroll */
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.85);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* LOGO */
+.navbar .logo {
+    font-size: 1.4em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-color-light);
+    line-height: 1;               /* 🔴 REMOVE OFFSET */
+}
+
+/* MENU */
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: flex-start;          /* 🔴 GARANTE CENTRO */
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links a {
+    font-weight: 600;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1;               /* 🔴 ESSENCIAL */
+    padding: 0;                   /* 🔴 REMOVE DESLOCAMENTO */
+    display: flex;
+    align-items: center;          /* 🔴 CENTRO REAL */
+    position: relative;
+    top: -2px;
+}
+
+/* Linha estilo SpaceX */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    background-color: var(--text-color-light);
+    left: 0;
+    bottom: -6px;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Menu Hambúrguer (Escondido em desktop) */
+.burger { display: none; }
+
+
+/* ---------------------------------------------------------------------- */
+/* SEÇÃO HOME (HERO) - Configuração do Background 3D */
+/* ---------------------------------------------------------------------- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--secondary-color); 
+}
+
+/* Canvas para a Terra 3D (Posicionamento absoluto para o fundo) */
+#earth-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; 
+    max-width: 50%; /* Limita o conteúdo para deixar espaço para a Terra */
+    text-align: left;
+}
+
+.hero-content h1 {
+    font-size: 4.5em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    line-height: 1.1;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: left;
+    min-height: 110px; 
+}
+
+.hero-content p {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    color: var(--text-color-dark);
+}
+
+/* ---------------------------------------------------------------------- */
+/* SOBRE NÓS/O QUE FAZEMOS? */
+/* ---------------------------------------------------------------------- */
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.intro-text {
+    text-align: left;
+}
+
+.mission-vision {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin: 50px 0;
+    text-align: left;
+}
+
+/* Container principal da seção */
+.diagonal-layout {
+    display: flex;
+    flex-direction: column; /* Um bloco embaixo do outro */
+    gap: 60px; /* Espaço vertical entre os dois blocos */
+}
+
+.about-block {
+    max-width: 850px; /* Largura para o texto ter espaço */
+    width: 100%;
+}
+
+/* --- AJUSTE DE JUSTIFICAÇÃO --- */
+.about-block p {
+    margin-top: 0;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    
+    /* Faz as linhas terminarem exatamente no mesmo tamanho */
+    text-align: justify; 
+    
+    /* Garante que a última linha fique alinhada ao lado correto (esquerda ou direita) */
+    text-align-last: inherit; 
+}
+
+/* --- AJUSTES ESPECÍFICOS POR LADO --- */
+
+/* Bloco da Esquerda */
+.about-block.left p {
+    text-align-last: left; /* Última linha termina na esquerda */
+}
+
+/* Bloco da Direita */
+.about-block.right p {
+    text-align: justify;
+    text-align-last: left; /* Isso garante que a última linha não acompanhe o alinhamento do bloco */
+}
+
+.about-block h2 {
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.about-block.left {
+    align-self: flex-start;
+}
+
+.about-block.right {
+    align-self: flex-end;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.about-block .btn-primary {
+    margin-top: 0;
+}
+
+.about-block.left h2 { text-align: left; }
+.about-block.right h2 { text-align: right; }
+
+/* ---O QUE NOS DIFERENCIA--- */
+.differentiation-section {
+    padding: 100px 0;
+    background-color: var(--secondary-color);
+    text-align: center;
+}
+
+.diff-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.diff-card {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.03),
+        rgba(255, 255, 255, 0.01)
+    ) !important;
+    
+    /* Borda sutil inicial (Contorno) */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(12px);
+
+    /* MANTENDO TODO O SEU LAYOUT ORIGINAL */
+    padding: 35px 25px;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: all 0.3s ease;
+    min-height: 220px; 
+    width: 100%;
+}
+
+.diff-card:hover {
+    transform: translateY(-5px);
+    /* Mantendo o contorno azul no hover como você já tinha */
+    border-color: var(--accent-color) !important; 
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(var(--accent-color-rgb), 0.4);
+}
+
+.icon-box {
+    /* REMOVIDO: background-color, border-radius e box-shadow */
+    color: var(--accent-color); /* Usa a variável de cor azul do seu tema */
+    width: auto;                /* Deixa a largura livre para o tamanho do ícone */
+    height: auto;               /* Deixa a altura livre */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 2.5rem;          /* Aumenta o tamanho do ícone para compensar a falta do fundo */
+}
+
+.card-content {
+    text-align: left;
+    flex: 1;
+}
+
+.card-content h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.15em;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.card-content p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7; /* Aumentado levemente para clareza */
+    color: #b0b0b0;
+    font-weight: 400;
+
+    /* A SOLUÇÃO PARA O TEXTO RETO E LIMPO */
+    text-align: justify;
+    text-justify: inter-character; /* Espaçamento entre letras para evitar buracos */
+    text-align-last: left;        /* Última linha termina natural à esquerda */
+    
+    /* Previne quebras bruscas */
+    hyphens: auto;
+    word-spacing: -0.5px;         /* Compacta levemente para caber melhor */
+}
+
+/* --- RESPONSIVIDADE AJUSTADA --- */
+@media (max-width: 900px) {
+    .diff-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .diff-grid { grid-template-columns: 1fr; }
+    
+    .diff-card {
+        padding: 25px 20px;
+        min-height: auto;
+    }
+
+    /* No mobile, o justificado pode ficar estranho, então voltamos para a esquerda */
+    .card-content p {
+        text-align: left;
+        text-align-last: left;
+    }
+}
+
+/* --- Serviços --- */
+/* ================================
+   SEÇÃO DE SERVIÇOS
+================================ */
+
+.services {
+    padding: 100px 0;
+}
+
+/* Container padrão da seção */
+.services .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+}
+
+/* Cabeçalho da seção */
+.services-header {
+    max-width: 640px;
+    margin-bottom: 72px;
+}
+
+.services-header h2 {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    color: #ffffff;
+}
+
+.services-header p {
+    color: #b8b8b8;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Grid dos serviços */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+    box-sizing: border-box;
+}
+
+/* Card */
+.service-card {
+    position: relative;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.03),
+        rgba(255, 255, 255, 0.01)
+    );
+    border-radius: 14px;
+    padding: 48px 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    /* Garantindo que o conteúdo interno não seja afetado por scale */
+    transform: translateZ(0); /* força camada GPU para transição mais suave */
+    will-change: transform;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* REMOVIDO o ::before que criava a linha azul no topo */
+
+/* Hover */
+.service-card:hover {
+    transform: translateY(-10px);
+    
+    /* Mudança: usa exatamente a mesma cor do accent (azul dos títulos/ícones) */
+    border-color: var(--accent-color);
+    
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(var(--accent-color-rgb), 0.3); /* opcional: glow mais forte com a mesma cor */
+}
+
+/* Garantia extra: nenhum filho do card sofre scale ou redução de tamanho */
+.service-card *,
+.service-card:hover * {
+    transform: none !important;
+    font-size: inherit !important;
+}
+
+/* Ícone */
+.service-card i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    opacity: 0.9;
+}
+
+/* Título */
+.service-card h3 {
+    font-size: 1.35rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Texto */
+.service-card p {
+    color: #b8b8b8;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* ================================
+   RESPONSIVO
+================================ */
+
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services .container {
+        padding: 0 32px;
+    }
+}
+
+@media (max-width: 600px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services .container {
+        padding: 0 20px;
+    }
+}
+
+
+/* Botão Saiba Mais */
+.cta-container {
+    width: 100%;
+    text-align: center;
+    margin: 80px auto 100px auto;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .service-card {
+        padding: 70px 30px;
+    }
+    .service-card:hover i {
+        transform: translateY(-40px);
+    }
+    .service-details {
+        top: 120px;
+    }
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { min-height: 350px; padding: 40px 20px; }
+}
+
+/* --- SEÇÃO FAQ --- */
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--card-bg); /* Mantém seu fundo original */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: var(--accent-color); /* Mantém seu ciano no hover */
+}
+
+.faq-question {
+    width: 100%;
+    padding: 25px 30px;
+    background: transparent;
+    border: none;
+    color: var(--text-color-light);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-question i {
+    color: var(--accent-color); /* Mantém ícone ciano */
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0; /* Escondido por padrão */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.faq-answer p {
+    /* Padding de 20px no topo cria o respiro natural que você deseja */
+    padding: 20px 30px 25px 30px; 
+    
+    color: var(--text-color-dark);
+    margin: 0;
+    line-height: 1.6;
+    
+    /* Mantendo suas configurações originais de alinhamento */
+    text-align: justify;
+    text-justify: inter-character;
+    text-align-last: left;
+    hyphens: auto;
+}
+
+/* Classe de ativação (necessária para o clique funcionar) */
+.faq-item.active .faq-answer {
+    max-height: 300px; /* Ajuste conforme a necessidade do seu texto */
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+/* --- Contato --- */
+.main-contact-wrapper {
+    min-height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center; /* Centraliza o bloco todo na tela */
+    align-items: center;     /* Centraliza verticalmente */
+    padding: 80px 20px;      /* Aumentei o padding para dar mais respiro */
+    box-sizing: border-box;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;             /* Aumente o gap para afastar as colunas conforme alarga */
+    max-width: 1300px;      /* AQUI você controla a largura total (tente 1200px ou 1400px) */
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Títulos - Mantidos à esquerda conforme a imagem */
+.contact-form-column h3,
+.contact-info h3 {
+    color: #fff;
+    font-size: 2rem;        /* Aumentei um pouco para acompanhar a largura */
+    margin-bottom: 40px;
+    text-align: left; 
+}
+
+/* Formulário */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 18px 20px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    resize: none;
+}
+
+/* botão enviar */
+.submit-btn {
+    /* Estado Normal - Fundo Preto, Borda Branca */
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;       /* Linha fina branca */
+    padding: 12px 40px;           /* Ajuste para ficar fino e elegante */
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 0;             /* Retângulo perfeito (sem curvas) */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    align-self: flex-start;       /* Mantém alinhado à esquerda do form */
+}
+
+.submit-btn:hover {
+    background-color: #fff;       /* Fundo fica branco */
+    color: #000;                  /* Texto fica preto */
+}
+
+/* Informações de Contato - Alinhadas à esquerda */
+.contact-info p {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+.contact-info p i {
+    color: #00f2ff;
+    width: 30px;
+    margin-right: 15px;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+/* Responsivo */
+@media (max-width: 968px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        max-width: 600px;
+    }
+
+    .contact-form-column h3,
+    .contact-info h3 {
+        text-align: center;
+    }
+
+    .submit-btn {
+        align-self: center;
+    }
+
+    .contact-info p {
+        justify-content: center;
+    }
+}
+
+
+/* --- FOOTER --- */
+/* ==========================================================================
+/* --- ESTRUTURA --- */
+.main-footer {
+    background-color: #050505;
+    color: #ffffff;
+    padding: 60px 0 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main-footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 50px;
+    align-items: start;
+}
+
+/* --- COLUNA DA MARCA (ALINHAMENTO ESQUERDA) --- */
+.brand-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Força tudo para o início da coluna */
+    text-align: left;
+    padding-left: 0; /* Garante que não haja recuo na coluna */
+}
+
+.logo-footer {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: #ffffff;
+    margin: 0 0 15px 0; /* Margin-top zero para alinhar com as outras colunas */
+    line-height: 1;
+    padding: 0;
+    text-transform: uppercase;
+    display: block;
+}
+
+.brand-tagline {
+    color: #888;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 20px 0; /* Alinhado diretamente abaixo da logo */
+    max-width: 280px;   /* Evita que o texto se espalhe demais */
+}
+
+.social-box {
+    display: flex;
+    gap: 20px;
+    margin: 0; /* Começa exatamente na margem esquerda */
+    padding: 0;
+}
+
+/* --- TÍTULOS E LISTAS --- */
+.footer-col h3 {
+    font-size: 0.9rem;
+    color: #ffff !important;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0 0 25px 0;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.no-bullets {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.footer-col ul li a {
+    color: #ffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #00f2ff;
+}
+
+/* --- CONTATO E ÍCONES --- */
+.social-box a {
+    color: #00f2ff !important;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.social-box a:hover {
+    transform: translateY(-3px);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.contact-item i {
+    color: #00f2ff !important;
+}
+
+.phone-flipped {
+    transform: scaleX(-1);
+}
+
+/* --- COPYRIGHT --- */
+.footer-divider {
+    border: 0;
+    border-top: 1px solid #111;
+    margin: 40px 0 20px;
+}
+
+.copyright-text {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #444;
+    letter-spacing: 1.5px;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVIDADE)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr; /* 2 colunas para tablets */
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* 1 coluna para celulares */
+        text-align: center;
+    }
+
+    .footer-col ul li a { justify-content: center; }
+    .social-box, .contact-item { justify-content: center; }
+    .brand-tagline { margin: 0 auto 25px; }
+
+    /* Menu Mobile Ajustado */
+    .nav-links {
+        position: fixed;
+        right: 0; top: 0; width: 100%; height: 100vh;
+        background-color: #050505;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in-out;
+        z-index: 999;
+    }
+    .nav-links.nav-active { transform: translateX(0%); }
+}
+
+/* PÁGINA TERMOS */
+.terms-page-wrapper {
+    background-color: #000;
+    padding: 150px 0 100px; /* Espaço para não bater na navbar */
+    min-height: 100vh;
+}
+
+.terms-content {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.terms-content h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.terms-content .date {
+    color: #666;
+    margin-bottom: 50px;
+    font-size: 0.9rem;
+}
+
+.terms-section {
+    margin-bottom: 40px;
+}
+
+.terms-section h2 {
+    color: var(--accent-color); /* O seu ciano */
+    font-size: 1.4rem;
+    text-align: left;
+    margin-bottom: 15px;
+    text-transform: none; /* Deixa mais amigável que o h2 do site */
+}
+
+.terms-section p {
+    color: #b5b5b5;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Garante que o botão de voltar siga o novo estilo que fizemos */
+.terms-content .submit-btn {
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 40px;
+}
